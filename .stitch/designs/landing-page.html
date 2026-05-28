@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Flip7 Market | Discover. Buy. Sell.</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,700;0,800;1,800&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-error": "#ffffff",
+                      "surface-tint": "#006a66",
+                      "cream-surface": "#FFF8E7",
+                      "surface-container": "#e7f0ef",
+                      "primary-fixed": "#85f5ee",
+                      "surface-container-lowest": "#ffffff",
+                      "on-tertiary-container": "#601200",
+                      "sky-bonus": "#5DADE2",
+                      "secondary": "#745c00",
+                      "on-primary-fixed-variant": "#00504d",
+                      "surface-dim": "#d3dcdb",
+                      "on-surface": "#151d1d",
+                      "inverse-primary": "#67d8d1",
+                      "coral-dark": "#D45233",
+                      "surface-container-low": "#ecf5f4",
+                      "on-tertiary-fixed-variant": "#872104",
+                      "surface": "#f2fbfa",
+                      "primary-container": "#2ba8a2",
+                      "on-secondary-fixed": "#241a00",
+                      "tertiary-fixed-dim": "#ffb4a2",
+                      "inverse-on-surface": "#eaf3f2",
+                      "outline-variant": "#bcc9c7",
+                      "tertiary-fixed": "#ffdbd2",
+                      "teal-dark": "#1E8C86",
+                      "on-surface-variant": "#3d4948",
+                      "primary-fixed-dim": "#67d8d1",
+                      "on-tertiary": "#ffffff",
+                      "on-tertiary-fixed": "#3c0800",
+                      "on-secondary": "#ffffff",
+                      "tertiary-container": "#f46f4d",
+                      "error": "#ba1a1a",
+                      "surface-bright": "#f2fbfa",
+                      "tertiary": "#a8381b",
+                      "on-primary-fixed": "#00201e",
+                      "on-secondary-fixed-variant": "#574500",
+                      "inverse-surface": "#293232",
+                      "on-secondary-container": "#705900",
+                      "error-container": "#ffdad6",
+                      "outline": "#6d7a78",
+                      "primary": "#006a66",
+                      "surface-container-high": "#e1eae9",
+                      "on-background": "#151d1d",
+                      "teal-light": "#3CC4BD",
+                      "on-primary-container": "#003634",
+                      "surface-variant": "#dbe4e3",
+                      "background": "#f2fbfa",
+                      "surface-container-highest": "#dbe4e3",
+                      "secondary-fixed-dim": "#edc22e",
+                      "on-error-container": "#93000a",
+                      "secondary-container": "#fcd03d",
+                      "on-primary": "#ffffff",
+                      "secondary-fixed": "#ffe089"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "base": "8px",
+                      "lg": "32px",
+                      "gutter": "16px",
+                      "container-margin": "24px",
+                      "xs": "8px",
+                      "sm": "16px",
+                      "md": "24px",
+                      "xl": "48px"
+              },
+              "fontFamily": {
+                      "h2": ["Plus Jakarta Sans"],
+                      "h1-mobile": ["Plus Jakarta Sans"],
+                      "label-xs": ["Inter"],
+                      "h3": ["Plus Jakarta Sans"],
+                      "display": ["Plus Jakarta Sans"],
+                      "h1": ["Plus Jakarta Sans"],
+                      "body-sm": ["Inter"],
+                      "body": ["Inter"]
+              },
+              "fontSize": {
+                      "h2": ["36px", {"lineHeight": "1.3", "fontWeight": "800"}],
+                      "h1-mobile": ["32px", {"lineHeight": "1.2", "letterSpacing": "1px", "fontWeight": "800"}],
+                      "label-xs": ["20px", {"lineHeight": "1.2", "fontWeight": "600"}],
+                      "h3": ["32px", {"lineHeight": "1.4", "fontWeight": "700"}],
+                      "display": ["72px", {"lineHeight": "1.1", "letterSpacing": "4px", "fontWeight": "800"}],
+                      "h1": ["48px", {"lineHeight": "1.2", "letterSpacing": "2px", "fontWeight": "800"}],
+                      "body-sm": ["24px", {"lineHeight": "1.5", "fontWeight": "500"}],
+                      "body": ["28px", {"lineHeight": "1.5", "fontWeight": "500"}]
+              },
+              "boxShadow": {
+                "teal-glow": "0 4px 20px rgba(43, 168, 162, 0.30)",
+                "gold-glow": "0 4px 20px rgba(255, 210, 63, 0.40)",
+                "coral-glow": "0 4px 20px rgba(239, 108, 74, 0.35)",
+                "card": "0 2px 10px rgba(43, 168, 162, 0.10)"
+              }
+            }
+          }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .bouncy-press {
+            transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .bouncy-press:active {
+            transform: scale(0.95);
+        }
+        .skew-banner {
+            transform: skewX(-12deg);
+        }
+        .dashed-divider {
+            background-image: linear-gradient(to right, #3CC4BD 40%, rgba(255, 255, 255, 0) 0%);
+            background-position: bottom;
+            background-size: 12px 3px;
+            background-repeat: repeat-x;
+        }
+        .hero-card-fan {
+            perspective: 1000px;
+        }
+        .card-rotate-1 { transform: rotate(-8deg) translateY(20px); z-index: 10; }
+        .card-rotate-2 { transform: rotate(0deg) translateY(0px); z-index: 20; }
+        .card-rotate-3 { transform: rotate(8deg) translateY(20px); z-index: 10; }
+    </style>
+</head>
+<body class="bg-background font-body text-on-background selection:bg-secondary-container">
+<!-- TopNavBar -->
+<header class="fixed top-0 w-full z-50 bg-cream-surface border-b-2 border-outline-variant shadow-sm h-20">
+<div class="flex justify-between items-center h-full px-container-margin max-w-7xl mx-auto">
+<!-- Brand -->
+<div class="flex items-center gap-md">
+<img alt="Flip7 Market" class="h-10" src="https://lh3.googleusercontent.com/aida/ADBb0ujL4tdHLhVh2nn9UHn3htoFH57_-bTIhgkBVd64bKhyFIyFAQZbtFC9Uk9-c2GRQ6BbbUmTBbYhAWqQD2aqfup4IS3yIJdvsmv3oj_99f07PpHIKILDH0xwFO8zJEd9_5huoQfM1Yw3Iha1iBwR7BKkjHrV88Ea-rXMPzvf5iFkdATGB6vefOuf_ikuj535TneQVyugf2KKM2PJW4sFtRZuMxrSNYU0BWE91LOelBTR9-2NQjZbROuvX1MF"/>
+</div>
+<!-- Navigation Links (Desktop Only) -->
+<nav class="hidden md:flex gap-md items-center font-body text-body-sm">
+<a class="text-primary font-bold border-b-2 border-primary pb-1" href="#">Shop</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors" href="#">Categories</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors" href="#">Sellers</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors" href="#">Deals</a>
+</nav>
+<!-- Search Bar -->
+<div class="hidden lg:flex items-center bg-surface-container-lowest rounded-full px-sm py-xs border-2 border-outline-variant focus-within:border-primary-container transition-all">
+<span class="material-symbols-outlined text-outline">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-sm w-48" placeholder="Search retro treasures..." type="text"/>
+</div>
+<!-- Actions -->
+<div class="flex items-center gap-sm">
+<div class="relative bouncy-press cursor-pointer">
+<span class="material-symbols-outlined text-primary text-3xl" data-icon="shopping_cart">shopping_cart</span>
+<span class="absolute -top-1 -right-1 bg-tertiary-container text-white text-[12px] font-bold px-1.5 py-0.5 rounded-full">3</span>
+</div>
+<button class="bg-primary-container text-white font-bold px-md py-xs rounded-full bouncy-press shadow-teal-glow">
+                    Sign In
+                </button>
+</div>
+</div>
+</header>
+<main class="pt-20">
+<!-- Hero Section -->
+<section class="max-w-7xl mx-auto px-container-margin py-xl grid md:grid-cols-2 gap-xl items-center overflow-hidden">
+<div class="space-y-md">
+<h1 class="font-h1 text-h1 text-teal-dark leading-tight">
+                    Discover. <br/>
+<span class="text-secondary">Buy.</span> <br/>
+<span class="text-tertiary">Sell.</span>
+</h1>
+<p class="text-body text-on-surface-variant max-w-md">
+                    Step into a world of competitive joy. The most tactile, high-energy marketplace for retro board games and vintage artifacts.
+                </p>
+<div class="flex flex-wrap gap-sm">
+<button class="bg-gradient-to-b from-secondary-container to-secondary-fixed text-on-secondary-container font-bold px-xl py-sm rounded-full bouncy-press shadow-gold-glow border-b-4 border-secondary">
+                        Shop Now
+                    </button>
+<button class="border-2 border-primary-container text-primary font-bold px-xl py-sm rounded-full bouncy-press hover:bg-primary-container/10">
+                        Become a Vendor
+                    </button>
+</div>
+</div>
+<div class="relative h-[500px] flex items-center justify-center hero-card-fan">
+<!-- Retro Cards fanned arrangement -->
+<div class="absolute w-[300px] h-[400px] bg-white rounded-3xl shadow-card p-sm card-rotate-1 flex flex-col border-2 border-outline-variant">
+<img alt="Retro Artifact 1" class="rounded-2xl object-cover h-3/4 mb-sm" data-alt="A detailed 1970s retro illustration of a teal toaster on a stylized game board path. The art style is flat with bold colors, featuring whimsical stars and gold coins in a nostalgic tabletop gaming aesthetic. Bright, high-energy cream background." src="https://lh3.googleusercontent.com/aida/ADBb0ujwmvpi0sYNutk7dDXBtKbhzLRWcQ4ia4iTj61L6Zp8SwhLLocb9HdJR_t2lBE9SRBHBvDGW5Xr_sGAv8fDeck_MqJWYgdaB0WPjNnKz-cZFGTCk0Y17it_fDjZuG225N5aZXcf3Tr7cnGl-Rn5e6BDglU7GnJbOh7RmTv2Te5mbpPvQfw2zAFPSY-gx0aJl6GO5_iLOKXrwpmqJmVWsCRdJzI2tNt2oqdNFokLRK1RpIEWSnWUPcFODccf"/>
+<div class="h-6 w-24 bg-surface-container rounded-full mb-xs"></div>
+<div class="h-4 w-32 bg-surface-container-low rounded-full"></div>
+</div>
+<div class="absolute w-[300px] h-[400px] bg-white rounded-3xl shadow-card p-sm card-rotate-2 flex flex-col border-2 border-primary-container">
+<div class="absolute -top-4 -right-4 bg-secondary-container p-2 rounded-full shadow-gold-glow rotate-12">
+<span class="material-symbols-outlined text-on-secondary-container" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<img alt="Retro Artifact 2" class="rounded-2xl object-cover h-3/4 mb-sm" data-alt="A vintage-style purple analog camera with a yellow lens, illustrated in a clean retro-modern aesthetic. The object sits on a peach-colored game board space. The atmosphere is playful and nostalgic, using a limited palette of primary colors and soft cream gradients." src="https://lh3.googleusercontent.com/aida/ADBb0ujwmvpi0sYNutk7dDXBtKbhzLRWcQ4ia4iTj61L6Zp8SwhLLocb9HdJR_t2lBE9SRBHBvDGW5Xr_sGAv8fDeck_MqJWYgdaB0WPjNnKz-cZFGTCk0Y17it_fDjZuG225N5aZXcf3Tr7cnGl-Rn5e6BDglU7GnJbOh7RmTv2Te5mbpPvQfw2zAFPSY-gx0aJl6GO5_iLOKXrwpmqJmVWsCRdJzI2tNt2oqdNFokLRK1RpIEWSnWUPcFODccf"/>
+<div class="h-6 w-24 bg-primary-container/20 rounded-full mb-xs"></div>
+<div class="h-4 w-32 bg-surface-container-low rounded-full"></div>
+</div>
+<div class="absolute w-[300px] h-[400px] bg-white rounded-3xl shadow-card p-sm card-rotate-3 flex flex-col border-2 border-outline-variant">
+<img alt="Retro Artifact 3" class="rounded-2xl object-cover h-3/4 mb-sm" data-alt="An illustrated retro red radio with gold dials and buttons, placed on a game-style path with dashed white lines. The background features light teal sunburst rays, creating a sense of dynamic energy and vintage charm. High contrast and clean line art style." src="https://lh3.googleusercontent.com/aida/ADBb0ujwmvpi0sYNutk7dDXBtKbhzLRWcQ4ia4iTj61L6Zp8SwhLLocb9HdJR_t2lBE9SRBHBvDGW5Xr_sGAv8fDeck_MqJWYgdaB0WPjNnKz-cZFGTCk0Y17it_fDjZuG225N5aZXcf3Tr7cnGl-Rn5e6BDglU7GnJbOh7RmTv2Te5mbpPvQfw2zAFPSY-gx0aJl6GO5_iLOKXrwpmqJmVWsCRdJzI2tNt2oqdNFokLRK1RpIEWSnWUPcFODccf"/>
+<div class="h-6 w-24 bg-surface-container rounded-full mb-xs"></div>
+<div class="h-4 w-32 bg-surface-container-low rounded-full"></div>
+</div>
+</div>
+</section>
+<!-- Flash Deals Banner -->
+<section class="bg-tertiary-container py-md mb-xl">
+<div class="max-w-7xl mx-auto px-container-margin flex flex-col md:flex-row justify-between items-center gap-sm">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-cream-surface text-3xl animate-pulse" style="font-variation-settings: 'FILL' 1;">bolt</span>
+<h2 class="font-h3 text-h3 text-cream-surface tracking-wider">FLASH DEALS - ENDS SOON</h2>
+</div>
+<div class="flex gap-xs items-center font-h2 text-cream-surface">
+<div class="bg-primary-container px-sm py-xs rounded-xl shadow-lg">04</div>
+<span>:</span>
+<div class="bg-primary-container px-sm py-xs rounded-xl shadow-lg">22</div>
+<span>:</span>
+<div class="bg-primary-container px-sm py-xs rounded-xl shadow-lg">59</div>
+</div>
+</div>
+</section>
+<!-- Featured Products -->
+<section class="bg-surface py-xl border-y-2 border-outline-variant">
+<div class="max-w-7xl mx-auto px-container-margin">
+<div class="flex justify-between items-end mb-lg">
+<div>
+<h2 class="font-h2 text-h2 text-teal-dark">Hot This Week</h2>
+<div class="h-1 w-32 bg-secondary rounded-full mt-xs"></div>
+</div>
+<a class="text-primary font-bold hover:underline flex items-center" href="#">
+                        View All <span class="material-symbols-outlined">chevron_right</span>
+</a>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-lg">
+<!-- Product Card 1 -->
+<div class="bg-white rounded-[24px] shadow-card relative overflow-hidden group border-2 border-transparent hover:border-primary-container transition-all">
+<div class="absolute left-0 top-0 bottom-0 w-[6px] bg-primary-container"></div>
+<div class="p-sm">
+<div class="aspect-square bg-surface-container rounded-2xl mb-sm overflow-hidden">
+<img alt="Vintage Board Game" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="A beautiful, vibrant photo of a classic wooden board game set against a minimalist cream background. The lighting is bright and warm, highlighting the tactile wood grain and colorful game pieces. The overall aesthetic is clean, premium, and playful, fitting for a modern retro marketplace." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAaP_MZ9GI6JrTYmbM1soDF1CYfcllKohTlqev3KRPGHzDDUtwn7F0VF13M1J2YuXFdZ3Vytzkm0SefTeFvfLgV_EnGI3E14dikC9rps7xfQHF7T_bZ6ZuVEsXtHziH8PMtwwKz9e79SiN2C0oYxlop9ahli4nE1gufII3HHXGxiyremYFgXj1wfYsWpKe86IePyc9JfvS43xWzgHXzpF0wv4DyymhE_iPvu5YJlrEh953L2-b420yWuNvkrjtpxkcNIkKqNa73BOCU"/>
+</div>
+<h3 class="font-bold text-on-surface mb-xs">Lunar Strategy Pro</h3>
+<p class="text-label-xs text-on-surface-variant mb-md">Limited Edition Set</p>
+<div class="flex justify-between items-center">
+<span class="font-h3 text-secondary">$124.00</span>
+<button class="bg-secondary-container p-sm rounded-full bouncy-press shadow-gold-glow flex items-center justify-center">
+<span class="material-symbols-outlined text-on-secondary-container" style="font-variation-settings: 'FILL' 1;">add_shopping_cart</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Product Card 2 -->
+<div class="bg-white rounded-[24px] shadow-card relative overflow-hidden group border-2 border-transparent hover:border-primary-container transition-all">
+<div class="absolute left-0 top-0 bottom-0 w-[6px] bg-primary-container"></div>
+<div class="p-sm">
+<div class="aspect-square bg-surface-container rounded-2xl mb-sm overflow-hidden">
+<img alt="Retro Dice" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="High-quality macro photograph of unique, oversized acrylic dice with gold leaf inclusions. The dice are resting on a teal velvet surface, illuminated by soft studio lighting that creates elegant highlights. The scene feels luxurious yet approachable, evoking a sense of high-stakes playfulness." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDAVEgIoaIYOQ6Tl_6zBEGG67Kx7OUWV4C5Qau_jDsMrmn3ymT-ylte65QWo-qbWqctkSS97m7fVNAH1WR-nhG0wBpsp9p8EKzO1mdY3uWWqjwRYP9_MNicFqbxF7f6-rSqs0ta-RuJcUN6uvOd-eap9Q0s_wtlDYyTdaYO0VxyqCjsG6PvnNwlG-V93Atz0EE0SMxlNI5xsFNg5lvvOeuBZKekyJ5jxZIbWm73JQg_6EINOt3Poc4GYr2QbepVXuaOersE_Dj6RGiK"/>
+</div>
+<h3 class="font-bold text-on-surface mb-xs">Obsidian Gold Dice</h3>
+<p class="text-label-xs text-on-surface-variant mb-md">Hand-carved Acrylic</p>
+<div class="flex justify-between items-center">
+<span class="font-h3 text-secondary">$45.00</span>
+<button class="bg-secondary-container p-sm rounded-full bouncy-press shadow-gold-glow flex items-center justify-center">
+<span class="material-symbols-outlined text-on-secondary-container" style="font-variation-settings: 'FILL' 1;">add_shopping_cart</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Product Card 3 -->
+<div class="bg-white rounded-[24px] shadow-card relative overflow-hidden group border-2 border-transparent hover:border-primary-container transition-all">
+<div class="absolute left-0 top-0 bottom-0 w-[6px] bg-primary-container"></div>
+<div class="p-sm">
+<div class="aspect-square bg-surface-container rounded-2xl mb-sm overflow-hidden">
+<img alt="Card Deck" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="A premium card deck with intricate retro illustrations on the backs, featuring geometric patterns in teal and coral. The cards are fanned out on a cream-colored wooden table. The lighting is crisp and even, emphasizing the high-quality print and vintage design aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAMprCR0t4uxvQ6eitWz4wAeAplOYykcrnenU2Q6zXoqSstGX86nW03MzzkCg4ihLwonuxgCPXgqjpk45DNqMT5--Al7DwjN67biF_jG86b7wI0joKp9GJeQFqRVDzf2FditLMRRGfjd-ge3SLT32btWKrS5vrX-ZKwtTQ-Q9-55v2f-m-f0XX70K9WCaVso8ZQi0WKyl_Kqt0XfAYS6ObYyT9sqET66Su1irJQVGjlPy2e3L0kDjpWPD9ZPJY-vwz5L0EkvSJuQBmp"/>
+</div>
+<h3 class="font-bold text-on-surface mb-xs">Moderne Deck</h3>
+<p class="text-label-xs text-on-surface-variant mb-md">Waterproof Finish</p>
+<div class="flex justify-between items-center">
+<span class="font-h3 text-secondary">$18.00</span>
+<button class="bg-secondary-container p-sm rounded-full bouncy-press shadow-gold-glow flex items-center justify-center">
+<span class="material-symbols-outlined text-on-secondary-container" style="font-variation-settings: 'FILL' 1;">add_shopping_cart</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Product Card 4 -->
+<div class="bg-white rounded-[24px] shadow-card relative overflow-hidden group border-2 border-transparent hover:border-primary-container transition-all">
+<div class="absolute left-0 top-0 bottom-0 w-[6px] bg-primary-container"></div>
+<div class="p-sm">
+<div class="aspect-square bg-surface-container rounded-2xl mb-sm overflow-hidden">
+<img alt="Trophy" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="A stylized gold trophy shaped like a crown with pearl-like accents, sitting on a teal pedestal. The background is a soft cream with playful stars. The lighting creates a gentle glow around the gold, making it feel like a coveted prize in a high-stakes board game universe." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBE01DfG9JlkkxyFVXP4NyAoBSk8ph13yzFeiE4gUWrapYkAo4i7Wa62cG0DL_iogHr8xqshs0audkimxo5BBenh4tOwguksu2OqTrptf5MN1BcDwywiUgMxv0hGYdQhhnszcqt5e9Ss0yitOTH-2XIy1WLGoauVzqDxZyptLnNwLpVYqf2fpDA3BGeUqC-K7xuPdvt8oRu9UJ6UzCIJ6wwk9QrFGwUHGPqHGMsw2MQbtwgWWobOmpA8hVoOLq9onMqDGuvob4yIuiI"/>
+</div>
+<h3 class="font-bold text-on-surface mb-xs">Champion's Crown</h3>
+<p class="text-label-xs text-on-surface-variant mb-md">Tournament Edition</p>
+<div class="flex justify-between items-center">
+<span class="font-h3 text-secondary">$320.00</span>
+<button class="bg-secondary-container p-sm rounded-full bouncy-press shadow-gold-glow flex items-center justify-center">
+<span class="material-symbols-outlined text-on-secondary-container" style="font-variation-settings: 'FILL' 1;">add_shopping_cart</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Divider -->
+<div class="max-w-7xl mx-auto my-xl px-container-margin h-[3px] dashed-divider"></div>
+<!-- Vendor Showcase / Bento Grid -->
+<section class="max-w-7xl mx-auto px-container-margin py-xl">
+<h2 class="font-h2 text-h2 text-on-surface mb-lg">Top Vendors</h2>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-md">
+<div class="md:col-span-2 bg-primary-container rounded-[24px] p-lg relative overflow-hidden shadow-teal-glow min-h-[300px] flex flex-col justify-end">
+<div class="absolute top-0 right-0 p-lg opacity-20">
+<span class="material-symbols-outlined text-[160px]" style="font-variation-settings: 'FILL' 1;">token</span>
+</div>
+<div class="relative z-10">
+<span class="bg-secondary-container text-on-secondary-container font-bold px-sm py-1 rounded-full text-sm uppercase tracking-widest mb-sm inline-block">Seller of the Month</span>
+<h3 class="font-h2 text-cream-surface">RetroQuest Studio</h3>
+<p class="text-cream-surface/80 max-w-sm mb-md">Specializing in rare mid-century tabletop games and custom game pieces.</p>
+<button class="bg-cream-surface text-primary font-bold px-xl py-sm rounded-full bouncy-press">Visit Studio</button>
+</div>
+</div>
+<div class="bg-cream-surface rounded-[24px] p-lg border-2 border-outline-variant flex flex-col items-center justify-center text-center">
+<div class="w-24 h-24 rounded-full bg-secondary-container flex items-center justify-center mb-md shadow-gold-glow">
+<span class="material-symbols-outlined text-on-secondary-container text-4xl">store</span>
+</div>
+<h3 class="font-bold text-on-surface mb-xs">Join the Market</h3>
+<p class="text-on-surface-variant text-sm mb-lg">Start selling your unique treasures to our growing community.</p>
+<button class="bg-teal-dark text-white font-bold w-full py-sm rounded-full bouncy-press">Open Shop</button>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-teal-dark dark:bg-surface-container-lowest text-white font-body text-body-sm w-full py-xl">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-lg px-container-margin max-w-7xl mx-auto">
+<!-- Brand Column -->
+<div class="space-y-sm">
+<h2 class="font-h3 text-h3 text-primary-fixed">Flip7 Market</h2>
+<p class="text-surface-variant opacity-80">Bringing competitive joy to collectors since 2024.</p>
+<div class="flex gap-sm pt-sm">
+<span class="material-symbols-outlined cursor-pointer hover:text-secondary-fixed transition-colors">public</span>
+<span class="material-symbols-outlined cursor-pointer hover:text-secondary-fixed transition-colors">share</span>
+<span class="material-symbols-outlined cursor-pointer hover:text-secondary-fixed transition-colors">favorite</span>
+</div>
+</div>
+<!-- Explore -->
+<div>
+<h4 class="font-bold mb-md uppercase tracking-widest text-secondary-fixed">Explore</h4>
+<ul class="space-y-xs text-surface-variant">
+<li><a class="hover:underline hover:text-primary-fixed transition-colors" href="#">Shop All</a></li>
+<li><a class="hover:underline hover:text-primary-fixed transition-colors" href="#">New Arrivals</a></li>
+<li><a class="hover:underline hover:text-primary-fixed transition-colors" href="#">Bestsellers</a></li>
+<li><a class="hover:underline hover:text-primary-fixed transition-colors" href="#">Flash Deals</a></li>
+</ul>
+</div>
+<!-- Support -->
+<div>
+<h4 class="font-bold mb-md uppercase tracking-widest text-secondary-fixed">Support</h4>
+<ul class="space-y-xs text-surface-variant">
+<li><a class="hover:underline hover:text-primary-fixed transition-colors" href="#">Shipping Info</a></li>
+<li><a class="hover:underline hover:text-primary-fixed transition-colors" href="#">Returns &amp; Refunds</a></li>
+<li><a class="hover:underline hover:text-primary-fixed transition-colors" href="#">Contact Support</a></li>
+<li><a class="hover:underline hover:text-primary-fixed transition-colors" href="#">FAQ</a></li>
+</ul>
+</div>
+<!-- Stay in the Loop -->
+<div>
+<h4 class="font-bold mb-md uppercase tracking-widest text-secondary-fixed">Stay in the Loop</h4>
+<p class="text-sm mb-sm text-surface-variant">Subscribe for exclusive retro drops.</p>
+<div class="flex flex-col gap-xs">
+<input class="bg-teal-light/20 border-2 border-teal-light rounded-xl px-sm py-xs focus:ring-0 text-sm text-white placeholder-teal-light" placeholder="Your email" type="email"/>
+<button class="bg-secondary-container text-on-secondary-container font-bold py-xs rounded-xl bouncy-press shadow-gold-glow">Subscribe</button>
+</div>
+</div>
+</div>
+<div class="max-w-7xl mx-auto px-container-margin mt-xl pt-lg border-t border-teal-light/20 flex flex-col md:flex-row justify-between items-center text-xs opacity-60">
+<p>© 2024 Flip7 Market. All rights reserved.</p>
+<div class="flex gap-md mt-sm md:mt-0">
+<a class="hover:underline" href="#">Terms of Service</a>
+<a class="hover:underline" href="#">Privacy Policy</a>
+</div>
+</div>
+</footer>
+<script>
+        // Micro-interaction: Hover glow effects and card tilting logic
+        document.querySelectorAll('.bouncy-press').forEach(btn => {
+            btn.addEventListener('mouseenter', () => {
+                // Potential light hover effect
+            });
+        });
+
+        // Simple parallax or mouse-follow for the hero cards could be added here
+        const heroSection = document.querySelector('section');
+        heroSection.addEventListener('mousemove', (e) => {
+            const cards = document.querySelectorAll('.hero-card-fan > div');
+            const x = (window.innerWidth / 2 - e.pageX) / 50;
+            const y = (window.innerHeight / 2 - e.pageY) / 50;
+            
+            cards.forEach((card, index) => {
+                const speed = (index + 1) * 0.5;
+                card.style.transform = `${getComputedStyle(card).transform} translate(${x * speed}px, ${y * speed}px)`;
+            });
+        });
+    </script>
+</body></html>

@@ -1,0 +1,12 @@
+now clerk & supabase integration is ready .. what i want you to do is:
+
+1- inside navbar you have to convert signin button to clerk signin .. and you must add signup button which will navigate first to choose role like in the second image.. and after navigating to become a vendor we must see first verification hub inside the second image which you must create ... the vendor must enter all his business info and send it to our marketplace for review .. so there must be new schema for that... after sending all his info .. everything must be transfered to admin dashboard for review or reject... after accepting the vendor and activating his account we will activate stripe connect so the vendor can add his bank account connecting to stripe connect.. 
+
+make sure vendor cannot create any product or navigate to vendor dashboard until he activates all the verification hub including bank account
+
+
+
+2- after navigating to shop now button we must see real data from supabase ... so seed some data for product and also create product details page
+
+
+3- after seeding data we must create add to cart function and stripe checkout for normal user so the user can make payment easily and send money to vendor after the vendor creates his bank account through stripe connect ... make sure that our marketplace will take 5% comission as a benefit so handle how we can get this benefit through stripe also....
