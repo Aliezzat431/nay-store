@@ -40,7 +40,7 @@ interface Vendor {
   submitted_at: string | null
   reviewed_at: string | null
   trust_score: number
-  stripe_onboarding_complete: boolean
+  kashier_onboarding_complete: boolean
 }
 
 export default function AdminVendorsPage() {
@@ -188,7 +188,7 @@ export default function AdminVendorsPage() {
                           <span>Submitted: {new Date(vendor.submitted_at).toLocaleDateString()}</span>
                         )}
                         <span>Trust Score: {vendor.trust_score}/100</span>
-                        <span>Stripe: {vendor.stripe_onboarding_complete ? '✓ Connected' : '✗ Not connected'}</span>
+                        <span>Kashier: {vendor.kashier_onboarding_complete ? '✓ Connected' : '✗ Not connected'}</span>
                       </div>
 
                       {vendor.admin_notes && (

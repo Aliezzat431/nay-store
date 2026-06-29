@@ -4,7 +4,7 @@
 
 2. Vendor Onboarding & Dashboard: A multi-step registration flow (Role Selection: Buyer vs. Vendor). For Vendors, include a 'Verification Hub' showing their application status (Pending/Active) and a 'Trust Score' widget based on AI scans.
 
-3. Product Management: A clean data table for vendors to manage inventory, including a 'Stripe Connect' integration status badge and a 'Payouts' overview chart.
+3. Product Management: A clean data table for vendors to manage inventory, including a 'Kashier Connect' integration status badge and a 'Payouts' overview chart.
 
 4. Marketplace Experience: A product listing page with advanced filters, a modern product detail page with 'Seller Info' (showing vendor rating), and a sleek Checkout page with a clear 'Platform Fee' and 'Final Price' breakdown.
 

@@ -27,7 +27,7 @@ export async function GET() {
       'id, clerk_user_id, store_name, business_name, business_type, store_description, ' +
       'business_email, business_phone, business_address, business_city, business_state, ' +
       'business_country, tax_id, status, admin_notes, submitted_at, reviewed_at, ' +
-      'trust_score, stripe_onboarding_complete, created_at'
+      'trust_score, kashier_onboarding_complete, created_at'
     )
     .order('submitted_at', { ascending: false })
 

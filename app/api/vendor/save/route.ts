@@ -4,7 +4,7 @@ import { z } from 'zod'
 import { createServiceClient } from '@/lib/supabase-server'
 
 // Only fields a vendor is allowed to write through this endpoint.
-// Admin-controlled columns (status, trust_score, stripe_account_id,
+// Admin-controlled columns (status, trust_score, kashier_account_id,
 // identity_verified, reviewed_at, admin_notes) are never accepted here.
 const SaveSchema = z.object({
   store_policy_accepted: z.boolean().optional(),

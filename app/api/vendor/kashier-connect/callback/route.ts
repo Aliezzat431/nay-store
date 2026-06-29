@@ -1,6 +1,6 @@
 import { auth } from '@clerk/nextjs/server'
 import { NextResponse } from 'next/server'
-import { stripe } from '@/lib/stripe'
+import { kashier } from '@/lib/kashier'
 import { createServiceClient } from '@/lib/supabase-server'
 
 const origin = () => process.env.NEXT_PUBLIC_APP_URL ?? 'http://localhost:3000'
@@ -20,25 +20,25 @@ export async function GET(req: Request) {
 
   let isComplete = false
   try {
-    const account = await stripe.accounts.retrieve(accountId)
+    const account = await kashier.accounts.retrieve(accountId)
     isComplete = Boolean(account.details_submitted)
   } catch (err) {
-    console.error('Stripe account retrieve error:', err)
-    return NextResponse.redirect(`${origin()}/vendor/onboarding?error=stripe_error`)
+    console.error('Kashier account retrieve error:', err)
+    return NextResponse.redirect(`${origin()}/vendor/onboarding?error=kashier_error`)
   }
 
   const supabase = createServiceClient()
   await supabase
     .from('vendors')
     .update({
-      stripe_account_id:        accountId,
-      stripe_onboarding_complete: isComplete,
+      kashier_account_id:        accountId,
+      kashier_onboarding_complete: isComplete,
       payout_setup:             isComplete,
       updated_at:               new Date().toISOString(),
     })
     .eq('clerk_user_id', userId)
 
   return NextResponse.redirect(
-    `${origin()}/vendor/onboarding?stripe=${isComplete ? 'success' : 'pending'}`,
+    `${origin()}/vendor/onboarding?kashier=${isComplete ? 'success' : 'pending'}`,
   )
 }

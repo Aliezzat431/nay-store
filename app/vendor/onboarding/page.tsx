@@ -43,7 +43,7 @@ interface VendorData {
   admin_notes?: string
   identity_verified?: boolean
   store_policy_accepted?: boolean
-  stripe_onboarding_complete?: boolean
+  kashier_onboarding_complete?: boolean
   payout_setup?: boolean
 }
 
@@ -60,7 +60,7 @@ function calcTrustScore(v: VendorData): number {
   if (v.identity_verified)       s += 30  // document scan
   if (v.business_name)           s += 15  // business reg
   if (v.store_policy_accepted)   s += 15  // policy
-  if (v.stripe_onboarding_complete) s += 25 // bank link
+  if (v.kashier_onboarding_complete) s += 25 // bank link
   if (v.status === 'approved')   s += 15  // admin trust
   return Math.min(s, 100)
 }
@@ -141,7 +141,7 @@ export default function VendorOnboardingPage() {
         // Skip step 1 if they've already submitted
         if (v.identity_verified || v.status !== 'draft') setStep(2)
         // Fully onboarded → dashboard
-        if (v.status === 'approved' && v.stripe_onboarding_complete) {
+        if (v.status === 'approved' && v.kashier_onboarding_complete) {
           router.push('/vendor')
         }
       }
@@ -191,16 +191,16 @@ export default function VendorOnboardingPage() {
     }
   }
 
-  async function handleStripeConnect() {
+  async function handleKashierConnect() {
     setSaving(true)
     setError('')
     try {
-      const res = await fetch('/api/vendor/stripe-connect', { method: 'POST' })
+      const res = await fetch('/api/vendor/kashier-connect', { method: 'POST' })
       const data = await res.json()
       if (data.url) window.location.href = data.url
-      else setError(data.error ?? 'Could not start Stripe setup.')
+      else setError(data.error ?? 'Could not start Kashier setup.')
     } catch {
-      setError('Could not connect Stripe. Please try again.')
+      setError('Could not connect Kashier. Please try again.')
     } finally {
       setSaving(false)
     }
@@ -212,11 +212,11 @@ export default function VendorOnboardingPage() {
 
   const identityDone = !!vendor?.identity_verified
   const policyDone   = !!vendor?.store_policy_accepted
-  const stripeDone   = !!vendor?.stripe_onboarding_complete
+  const kashierDone   = !!vendor?.kashier_onboarding_complete
 
   const steps = [
     { n: 1, label: 'Store Details', active: step === 1, done: step === 2 },
-    { n: 2, label: 'Verification',  active: step === 2, done: status === 'approved' && stripeDone },
+    { n: 2, label: 'Verification',  active: step === 2, done: status === 'approved' && kashierDone },
     { n: 3, label: 'Launch',        active: false, done: false },
   ]
 
@@ -418,7 +418,7 @@ export default function VendorOnboardingPage() {
                   {[
                     { label: 'Document Scan', done: identityDone },
                     { label: 'Business Reg',  done: !!vendor?.business_name },
-                    { label: 'Bank Link',      done: stripeDone, pending: !stripeDone && identityDone },
+                    { label: 'Bank Link',      done: kashierDone, pending: !kashierDone && identityDone },
                   ].map(({ label, done, pending }) => (
                     <div key={label} className="flex items-center justify-between text-xs font-semibold"
                       style={{ color: ds.onSurfaceVar }}>
@@ -487,18 +487,18 @@ export default function VendorOnboardingPage() {
 
                 {/* Payout Setup */}
                 <div className="rounded-2xl p-4 flex items-center gap-4"
-                  style={{ backgroundColor: stripeDone ? '#f0fdf4' : '#fff5f5', border: `1px solid ${stripeDone ? '#bbf7d0' : '#fecaca'}` }}>
+                  style={{ backgroundColor: kashierDone ? '#f0fdf4' : '#fff5f5', border: `1px solid ${kashierDone ? '#bbf7d0' : '#fecaca'}` }}>
                   <div className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0"
-                    style={{ backgroundColor: stripeDone ? '#bbf7d0' : '#fee2e2' }}>
-                    <Building2 size={18} style={{ color: stripeDone ? '#16a34a' : ds.coral }} />
+                    style={{ backgroundColor: kashierDone ? '#bbf7d0' : '#fee2e2' }}>
+                    <Building2 size={18} style={{ color: kashierDone ? '#16a34a' : ds.coral }} />
                   </div>
                   <div className="flex-1">
                     <div className="font-black text-sm" style={{ color: ds.onSurface }}>Payout Setup</div>
-                    <div className="text-xs mt-0.5" style={{ color: stripeDone ? '#16a34a' : ds.coral }}>
-                      {stripeDone ? 'Bank Account Connected' : 'Action Required'}
+                    <div className="text-xs mt-0.5" style={{ color: kashierDone ? '#16a34a' : ds.coral }}>
+                      {kashierDone ? 'Bank Account Connected' : 'Action Required'}
                     </div>
                   </div>
-                  {stripeDone
+                  {kashierDone
                     ? <CheckCircle size={22} style={{ color: '#16a34a' }} />
                     : <XCircle size={22} style={{ color: ds.coral }} />}
                 </div>
@@ -529,10 +529,10 @@ export default function VendorOnboardingPage() {
             )}
 
             {/* CTA button */}
-            {!stripeDone && (
+            {!kashierDone && (
               <div className="px-8 pb-8">
                 {error && <div className="text-xs text-red-600 mb-3 p-3 rounded-xl bg-red-50">{error}</div>}
-                <button onClick={handleStripeConnect} disabled={saving}
+                <button onClick={handleKashierConnect} disabled={saving}
                   className="w-full py-3.5 rounded-full font-black text-sm flex items-center justify-center gap-2 transition-all hover:scale-[1.02] disabled:opacity-60"
                   style={{ backgroundColor: ds.gold, color: ds.onSurface, boxShadow: '0 4px 20px rgba(255,210,63,0.35)' }}>
                   {saving
@@ -540,13 +540,13 @@ export default function VendorOnboardingPage() {
                     : 'Complete Payout Setup →'}
                 </button>
                 <p className="text-xs text-center mt-2" style={{ color: '#9ca3af' }}>
-                  Powered by Stripe Connect — secure bank-level encryption
+                  Powered by Kashier Connect — secure bank-level encryption
                 </p>
               </div>
             )}
 
             {/* All done + approved */}
-            {stripeDone && status === 'approved' && (
+            {kashierDone && status === 'approved' && (
               <div className="px-8 pb-8">
                 <button onClick={() => router.push('/vendor')}
                   className="w-full py-3.5 rounded-full font-black text-sm transition-all hover:scale-[1.02]"
@@ -556,10 +556,10 @@ export default function VendorOnboardingPage() {
               </div>
             )}
 
-            {/* Done with Stripe but waiting for admin */}
-            {stripeDone && status !== 'approved' && status !== 'rejected' && (
+            {/* Done with Kashier but waiting for admin */}
+            {kashierDone && status !== 'approved' && status !== 'rejected' && (
               <div className="px-8 pb-8 text-center text-sm" style={{ color: ds.onSurfaceVar }}>
-                ✅ Stripe connected! Waiting for admin approval to go live.
+                ✅ Kashier connected! Waiting for admin approval to go live.
               </div>
             )}
 

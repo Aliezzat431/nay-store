@@ -12,7 +12,7 @@ export interface CartItem {
   stock: number
   vendor_id: string
   store_name?: string
-  stripe_account_id?: string
+  kashier_account_id?: string
 }
 
 const CART_KEY = 'flip7_cart'

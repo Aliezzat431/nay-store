@@ -21,7 +21,7 @@ async function getProduct(id: string) {
   const supabase = createAnonClient()
   const { data } = await supabase
     .from('products')
-    .select('*, vendors(id, store_name, trust_score, stripe_account_id)')
+    .select('*, vendors(id, store_name, trust_score, kashier_account_id)')
     .eq('id', id)
     .eq('is_active', true)
     .single()
@@ -34,7 +34,7 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
   if (!product) notFound()
 
   const vendor = product.vendors as {
-    id: string; store_name: string; trust_score: number; stripe_account_id: string
+    id: string; store_name: string; trust_score: number; kashier_account_id: string
   } | null
 
   const platformFee = Number(product.price) * 0.05
@@ -139,7 +139,7 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
                 stock:             product.stock ?? 0,
                 vendor_id:         vendor?.id ?? '',
                 store_name:        vendor?.store_name ?? '',
-                stripe_account_id: vendor?.stripe_account_id ?? '',
+                kashier_account_id: vendor?.kashier_account_id ?? '',
               }} />
             </div>
 

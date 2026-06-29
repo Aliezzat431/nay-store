@@ -35,7 +35,7 @@ export async function POST(req: Request) {
 
   const { data: products } = await supabase
     .from('products')
-    .select('id, name, price, emoji, vendor_id, vendors(stripe_account_id)')
+    .select('id, name, price, emoji, vendor_id, vendors(kashier_account_id)')
     .in('id', items.map(i => i.product_id))
     .eq('is_active', true)
 
@@ -50,7 +50,7 @@ export async function POST(req: Request) {
 
   // Reserve stock atomically BEFORE charging the card. The RPC's row-level
   // UPDATE with `stock >= qty` guard is what serialises concurrent buyers —
-  // the loser fails here and never reaches Stripe.
+  // the loser fails here and never reaches Kashier.
   const { data: reserveResult, error: reserveErr } = await supabase.rpc('decrement_stock_batch', {
     items,
   })
@@ -65,9 +65,9 @@ export async function POST(req: Request) {
 
   const firstProduct = products[0]
   const vendorRaw = firstProduct.vendors
-  const vendorStripeId = Array.isArray(vendorRaw)
-    ? (vendorRaw[0] as { stripe_account_id: string } | undefined)?.stripe_account_id
-    : (vendorRaw as { stripe_account_id: string } | null)?.stripe_account_id
+  const vendorKashierId = Array.isArray(vendorRaw)
+    ? (vendorRaw[0] as { kashier_account_id: string } | undefined)?.kashier_account_id
+    : (vendorRaw as { kashier_account_id: string } | null)?.kashier_account_id
 
   const lineItems = products.map(product => {
     const cartItem = items.find(i => i.product_id === product.id)

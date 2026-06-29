@@ -20,7 +20,7 @@ export async function GET() {
   // Get all order_items for this vendor with order + product info
   const { data: orderItems } = await supabase
     .from('order_items')
-    .select('id, quantity, unit_price, order_id, product_id, orders(id, status, created_at, buyer_clerk_id, stripe_payment_intent), products(name, emoji)')
+    .select('id, quantity, unit_price, order_id, product_id, orders(id, status, created_at, buyer_clerk_id, kashier_payment_intent), products(name, emoji)')
     .eq('vendor_id', vendor.id)
 
   // Total revenue
