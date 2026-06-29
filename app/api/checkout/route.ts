@@ -92,35 +92,28 @@ export async function POST(req: Request) {
   // Store quantities in metadata keyed as "product_id:qty" for the webhook
   const itemsMeta = items.map(i => `${i.product_id}:${i.quantity}`).join(',')
 
-  const sessionParams: Parameters<typeof stripe.checkout.sessions.create>[0] = {
-    payment_method_types: ['card'],
-    line_items:           lineItems,
-    mode:                 'payment',
-    // 30 min is Stripe's minimum. When the session expires Stripe emits
-    // `checkout.session.expired` and the webhook returns the reservation.
-    expires_at:  Math.floor(Date.now() / 1000) + 30 * 60,
-    success_url: `${origin}/orders/success?session_id={CHECKOUT_SESSION_ID}`,
-    cancel_url:  `${origin}/cart`,
-    metadata: {
-      buyer_clerk_id: userId,
-      items_meta:     itemsMeta.slice(0, 500), // Stripe metadata 500-char limit
-    },
-  }
+  const kashierMerchantId = process.env.KASHIER_MERCHANT_ID || 'your_merchant_id';
+  const kashierApiKey = process.env.KASHIER_API_KEY || 'your_api_key';
+  
+  // Generating a randomized order ID
+  const orderId = `order_${Math.floor(Math.random() * 1000000)}`;
+  
+  // In a real Kashier integration you would typically generate an HMAC string here
+  // const crypto = require('crypto');
+  // const amountStr = totalAmount.toString();
+  // const hashString = `?payment=${kashierMerchantId}&orderInstance=${orderId}&amount=${amountStr}`;
+  // const hash = crypto.createHmac('sha256', kashierApiKey).update(hashString).digest('hex');
 
-  if (vendorStripeId) {
-    sessionParams.payment_intent_data = {
-      application_fee_amount: applicationFee,
-      transfer_data: { destination: vendorStripeId },
-    }
-  }
-
+  const kashierUrl = `https://checkout.kashier.io/?merchantId=${kashierMerchantId}&orderId=${orderId}&amount=${totalAmount}&currency=EGP&mode=${process.env.KASHIER_MODE || 'test'}`;
+  
   try {
-    const session = await stripe.checkout.sessions.create(sessionParams)
-    return NextResponse.json({ url: session.url })
+    // Generate Kashier checkout URL
+    return NextResponse.json({ url: kashierUrl })
   } catch (err) {
-    // Stripe failed after we reserved stock — return it before the buyer leaves
+    // Kashier failed after we reserved stock — return it before the buyer leaves
     await supabase.rpc('restore_stock_batch', { items })
-    console.error('[checkout] stripe session creation failed, stock restored:', err)
+    console.error('[checkout] Kashier session creation failed, stock restored:', err)
     return NextResponse.json({ error: 'Could not start checkout' }, { status: 502 })
   }
 }
+

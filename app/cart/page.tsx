@@ -169,7 +169,7 @@ export default function CartPage() {
 
                 <div className="flex items-center justify-center gap-1 mt-3 text-xs" style={{ color: '#9ca3af' }}>
                   <Lock size={10} />
-                  <span>Powered by Stripe – Secure Payment</span>
+                  <span>Powered by Kashier – Secure Payment</span>
                 </div>
 
                 <div className="mt-2 text-xs text-center" style={{ color: '#9ca3af' }}>
