@@ -1,9 +1,10 @@
 import { auth } from '@clerk/nextjs/server'
 import { NextResponse } from 'next/server'
 import { z } from 'zod'
-import { stripe, PLATFORM_FEE_PERCENT } from '@/lib/stripe'
 import { createServiceClient } from '@/lib/supabase-server'
 import { rateLimit, getIp } from '@/lib/rate-limit'
+
+const PLATFORM_FEE_PERCENT = 0.05
 
 const CheckoutSchema = z.object({
   items: z
