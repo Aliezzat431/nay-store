@@ -30,7 +30,7 @@ export async function GET() {
 
   // Active orders (paid/processing)
   const activeOrders = (orderItems ?? []).filter(
-    item => ['paid', 'processing', 'shipped'].includes((item.orders as {status:string}|null)?.status ?? '')
+    item => ['paid', 'processing', 'shipped'].includes((item.orders as any)?.status ?? '')
   ).length
 
   // Listed products count
@@ -44,15 +44,15 @@ export async function GET() {
   const seenOrders = new Set<string>()
   const recentOrders = (orderItems ?? [])
     .filter(item => {
-      const orderId = (item.orders as {id:string}|null)?.id
+      const orderId = (item.orders as any)?.id
       if (!orderId || seenOrders.has(orderId)) return false
       seenOrders.add(orderId)
       return true
     })
     .slice(0, 5)
     .map(item => {
-      const order = item.orders as { id: string; status: string; created_at: string; buyer_clerk_id: string } | null
-      const product = item.products as { name: string; emoji: string } | null
+      const order = item.orders as any
+      const product = item.products as any
       return {
         id: order?.id?.slice(0, 8).toUpperCase() ?? '—',
         item: product?.name ?? 'Unknown',
@@ -66,7 +66,7 @@ export async function GET() {
   // Top products by revenue
   const productRevenue: Record<string, { name: string; emoji: string; revenue: number; sold: number }> = {}
   for (const item of orderItems ?? []) {
-    const product = item.products as { name: string; emoji: string } | null
+    const product = item.products as any
     if (!product || !item.product_id) continue
     if (!productRevenue[item.product_id]) {
       productRevenue[item.product_id] = { name: product.name, emoji: product.emoji, revenue: 0, sold: 0 }
